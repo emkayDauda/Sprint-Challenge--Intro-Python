@@ -25,10 +25,8 @@ class City:
     self.lon = float(lon)
 
   def __str__(self):
-    return f"City {self.name} is at lat: {self.lat}, lon: {self.lon}"
+    return f"{self.name}, {self.lat},{self.lon}"
 
-    def __repr__(self):
-      return self.__str__()
 
 cities = []
 
@@ -97,10 +95,11 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
 
   return within
 
-lat1, lon1 = input("Enter lat1, lon1: ").split(',')
-lat2, lon2 = input("Enter lat2, lon2: ").split(',')
+def run_stretch():
+  lat1, lon1 = input("Enter lat1, lon1: ").split(',')
+  lat2, lon2 = input("Enter lat2, lon2: ").split(',')
 
-allCitiesWithin = cityreader_stretch(float(lat1), float(lon1), float(lat2), float(lon2), cityreader())
+  allCitiesWithin = cityreader_stretch(float(lat1), float(lon1), float(lat2), float(lon2), cityreader())
 
-for cityWithin in allCitiesWithin:
-  print(cityWithin)
+  for cityWithin in allCitiesWithin:
+    print(cityWithin)
