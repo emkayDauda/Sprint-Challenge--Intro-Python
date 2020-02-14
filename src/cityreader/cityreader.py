@@ -16,12 +16,33 @@
 # should not be loaded into a City object.
 cities = []
 
+import csv
+import os
+class City:
+  def __init__(self, name, lat, lon):
+    self.name = name
+    self.lat = float(lat)
+    self.lon = float(lon)
+
+  def __str__(self):
+    return f"City {self.name} is at lat: {self.lat}, lon: {self.lon}"
+
+cities = []
+
 def cityreader(cities=[]):
   # TODO Implement the functionality to read from the 'cities.csv' file
   # For each city record, create a new City instance and add it to the 
   # `cities` list
-    
-    return cities
+
+  with open(f'{os.getcwd()}/src/cityreader/cities.csv') as cities_file:
+    csvReader = csv.DictReader(cities_file)
+    line = 0
+    for row in csvReader:
+      cities.append(City(row['city'], row['lat'], row['lng']))
+      line+=1
+
+      
+  return cities
 
 cityreader(cities)
 
