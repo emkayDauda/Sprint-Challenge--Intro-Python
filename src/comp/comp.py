@@ -52,7 +52,7 @@ print(c)
 
 # Write a list comprehension that creates a list of all the ages plus 10.
 print("Ages plus 10:")
-d = []
+d = list(map(lambda human: human.age + 10, humans))
 print(d)
 
 # Write a list comprehension that creates a list of strings which are the name
