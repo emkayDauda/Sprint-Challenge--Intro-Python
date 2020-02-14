@@ -27,6 +27,9 @@ class City:
   def __str__(self):
     return f"City {self.name} is at lat: {self.lat}, lon: {self.lon}"
 
+    def __repr__(self):
+      return self.__str__()
+
 cities = []
 
 def cityreader(cities=[]):
@@ -83,10 +86,21 @@ for c in cities:
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
-  within = []
+  # if (lat2 > lat1):
+  #   lat1, lon1 = lat2, lon2
+  within = [city for city in cities if min(lat1, lat2) <= city.lat <= max(lat1, lat2) 
+              and min(lon1, lon2) <= city.lon <= max(lon1, lon2)]
 
   # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
 
   return within
+
+lat1, lon1 = input("Enter lat1, lon1: ").split(',')
+lat2, lon2 = input("Enter lat2, lon2: ").split(',')
+
+allCitiesWithin = cityreader_stretch(float(lat1), float(lon1), float(lat2), float(lon2), cityreader())
+
+for cityWithin in allCitiesWithin:
+  print(cityWithin)
